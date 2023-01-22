@@ -14,7 +14,7 @@ import src.pypassword.utils as utils
         (logging.CRITICAL, False)
     ),
 )
-def test_logging_setup(level, root):
+def test_setup_logger(level, root):
     utils.setup_logger(level=level, root=root)
 
     # Get utils library logger
