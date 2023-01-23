@@ -1,3 +1,2 @@
-from .cli import main
+__version__ = "1.2.0.dev"
 
-__version__ = "1.0.0.dev"
