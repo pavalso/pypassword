@@ -1,5 +1,28 @@
 import logging
 
+import click
+
+from typing import (
+    BinaryIO
+)
+
+
+class FileToSet(click.File):
+    """*Class docstring missing*"""
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__('rb', *args, **kwargs)
+
+    def convert(self, value, param, ctx):
+        fp: BinaryIO = super().convert(value, param, ctx)
+        return set(char for char in fp.read())
+
+
+class StrToSet(click.ParamType):
+    """*Class docstring missing*"""
+    name = 'string'
+    def convert(self, value, param, ctx):
+        return set(super().convert(value, param, ctx).encode())
+
 
 def setup_logger(
     *,
