@@ -8,7 +8,7 @@ from typing import (
 
 
 class FileToSet(click.File):
-    """*Class docstring missing*"""
+    """Parameter that transforms a file text characters into a set"""
     def __init__(self, *args, **kwargs) -> None:
         super().__init__('rb', *args, **kwargs)
 
@@ -18,7 +18,7 @@ class FileToSet(click.File):
 
 
 class StrToSet(click.ParamType):
-    """*Class docstring missing*"""
+    """Parameter that transforms a string into a set of its characters"""
     name = 'string'
     def convert(self, value, param, ctx):
         return set(super().convert(value, param, ctx).encode())
