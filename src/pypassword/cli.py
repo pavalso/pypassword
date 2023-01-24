@@ -16,7 +16,6 @@ def print_version(ctx, param, value):
     click.echo('Pypassword %s' % __version__)
     ctx.exit()
 
-
 @click.command()
 
 @click.option(
@@ -26,37 +25,53 @@ def print_version(ctx, param, value):
     help='Length of the password'
     )
 
+@click.argument(
+    'mode',
+    type=click.Choice(['random'])
+)
+
 @click.option(
-    '-C', 
-    '--chars-file', 
-    'chars_file', 
-    type=FILE_TO_SET, 
+    '-C',
+    '--chars-file',
+    'chars_file_set',
+    type=FILE_TO_SET,
     help='A file containing all the characters that can be used to generate the password'
     )
 
 @click.option(
-    '-c', 
-    '--chars-list', 
-    'chars_list', 
-    type=STR_TO_SET, 
-    help='A string containing all the characters that can be used to generate the password'
+    '-c',
+    '--chars-list',
+    'chars_raw_set',
+    type=STR_TO_SET,
+    help='A string containing all the characters that can be used to generate the password, ' \
+        'if --chars-file exists, this will be completely ignored'
     )
 
 @click.option(
-    '-v', 
-    '--verbose', 
+    '-v',
+    '--verbose',
     count=True
     )
 
 @click.option(
-    '--version', 
-    is_flag=True, 
-    callback=print_version, 
-    expose_value=False, 
+    '--version',
+    is_flag=True,
+    callback=print_version,
+    expose_value=False,
     is_eager=True
     )
 
 @click.pass_context
-def main(ctx, length, chars_file, chars_list, verbose):
-    """*Main docstring missing*"""
-    click.echo('%s %s %s %s' % (length, chars_file, chars_list, verbose))
+def main(
+    ctx,
+    length: int,
+    mode: str,
+    chars_file_set: set[bytes],
+    chars_raw_set: set[bytes],
+    verbose: int
+    ):
+    """*Proyect description*"""
+    ctx.ensure_object(dict)
+
+    ctx.obj['length'] = length
+    ctx.obj['verbose'] = verbose
