@@ -70,9 +70,8 @@ def main(
     chars_raw_set: set[bytes],
     verbose: int
     ):
-    """*Proyect description*"""
+    """Generates random sequences right on your command prompt"""
     ctx.ensure_object(dict)
 
     ctx.obj['length'] = length
     ctx.obj['verbose'] = verbose
-    print('waycj')
