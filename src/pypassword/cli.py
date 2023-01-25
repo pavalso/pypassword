@@ -18,17 +18,17 @@ def print_version(ctx, param, value):
 
 @click.command()
 
+@click.argument(
+    'mode',
+    type=click.Choice(['random'])
+)
+
 @click.option(
     '-l',
     '--length',
     default=12,
     help='Length of the password'
     )
-
-@click.argument(
-    'mode',
-    type=click.Choice(['random'])
-)
 
 @click.option(
     '-C',
@@ -64,8 +64,8 @@ def print_version(ctx, param, value):
 @click.pass_context
 def main(
     ctx,
-    length: int,
     mode: str,
+    length: int,
     chars_file_set: set[bytes],
     chars_raw_set: set[bytes],
     verbose: int
@@ -75,3 +75,4 @@ def main(
 
     ctx.obj['length'] = length
     ctx.obj['verbose'] = verbose
+    print('waycj')
