@@ -16,10 +16,18 @@ def print_version(ctx, param, value):
     click.echo('Pypassword %s' % __version__)
     ctx.exit()
 
+def print_help_if_none(ctx, _, value):
+    if value is None:
+        click.echo(ctx.get_help())
+        ctx.exit()
+    return value
+
 @click.command()
 
 @click.argument(
     'mode',
+    required=False,
+    callback=print_help_if_none,
     type=click.Choice(['random'])
 )
 
