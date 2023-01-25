@@ -1,5 +1,28 @@
 import logging
 
+import click
+
+from typing import (
+    BinaryIO
+)
+
+
+class FileToSet(click.File):
+    """Parameter that transforms a file text characters into a set"""
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__('rb', *args, **kwargs)
+
+    def convert(self, value, param, ctx):
+        fp: BinaryIO = super().convert(value, param, ctx)
+        return set(char for char in fp.read())
+
+
+class StrToSet(click.ParamType):
+    """Parameter that transforms a string into a set of its characters"""
+    name = 'string'
+    def convert(self, value, param, ctx):
+        return set(super().convert(value, param, ctx).encode())
+
 
 def setup_logger(
     *,
