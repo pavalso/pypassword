@@ -13,4 +13,4 @@ def create_password(
         return b''
     list_characters = list(available_characters)
     buffer = [random.choice(list_characters) for _ in range(length)]
-    return bytearray(buffer)
+    return bytes(bytearray(buffer))
