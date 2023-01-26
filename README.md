@@ -1,4 +1,3 @@
 # PYPASSWORD
 
-A command to generate random sequences right on your command prompt
-
+Command-line tool for generating secure passwords
