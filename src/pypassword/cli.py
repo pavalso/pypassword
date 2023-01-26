@@ -1,6 +1,7 @@
 import click
 
 from .utils import FileToSet, StrToSet
+from . import create_password
 
 
 FILE_TO_SET = FileToSet()
@@ -77,9 +78,17 @@ def main(
     chars_file_set: set[bytes],
     chars_raw_set: set[bytes],
     verbose: int
-    ):
+):
     """Generates random sequences right on your command prompt"""
     ctx.ensure_object(dict)
 
     ctx.obj['length'] = length
     ctx.obj['verbose'] = verbose
+
+    password = b''
+
+    if mode == 'random':
+        available_chars = chars_raw_set if not chars_file_set else chars_file_set
+        password = create_password(available_chars, length)
+    
+    click.echo(password)
