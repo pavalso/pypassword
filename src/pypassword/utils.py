@@ -14,7 +14,7 @@ class FileToSet(click.File):
 
     def convert(self, value, param, ctx):
         fp: BinaryIO = super().convert(value, param, ctx)
-        return set(char for char in fp.read())
+        return set(fp.read())
 
 
 class StrToSet(click.ParamType):
