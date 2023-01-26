@@ -31,14 +31,20 @@ def setup_logger(
     level: int = logging.WARNING,
     root: bool = False,
 ) -> None:
-    """Function from discord.py package, adapted for this proyect
-        https://github.com/Rapptz/discord.py/blob/master/discord/utils.py#L1299
+    """
+    Function from discord.py package, adapted for this proyect
+    https://github.com/Rapptz/discord.py/blob/master/discord/utils.py#L1299
 
-        Initializes the logger, :root: specifies whenever root logger should be configured
-        or the library at `__name__`
+    Setup a python logger.
+    This function sets up a logger with the specified handler, formatter, level, and root status. 
+    If no formatter is provided, a default formatter will be used with the format. 
+    If root is set to True, the logger will be set as the root logger, otherwise the logger will be set to the library name specified in name.
 
-        If no arguments are passed, the stderr will be used
-        and only warnings or above will be shown
+    Parameters:
+        handler (logging.Handler, optional): The logging handler to be used. Defaults to logging.StreamHandler().
+        formatter (logging.Formatter, optional): The logging formatter to be used. Defaults to None.
+        level (int, optional): The logging level to be used. Defaults to logging.WARNING.
+        root (bool, optional): Whether to use the root logger or not. Defaults to False.
     """
     if not formatter:
         dt_fmt = '%Y-%m-%d %H:%M:%S'

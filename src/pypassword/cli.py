@@ -79,7 +79,7 @@ def main(
     chars_raw_set: set[bytes],
     verbose: int
 ):
-    """Generates random sequences right on your command prompt"""
+    """Command-line tool for generating secure passwords"""
     ctx.ensure_object(dict)
 
     ctx.obj['length'] = length
