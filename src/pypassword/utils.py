@@ -14,14 +14,14 @@ class FileToSet(click.File):
 
     def convert(self, value, param, ctx):
         fp: BinaryIO = super().convert(value, param, ctx)
-        return set(char.to_bytes(2, 'big') for char in fp.read())
+        return set(fp.read())
 
 
 class StrToSet(click.ParamType):
     """Parameter that transforms a string into a set of its characters"""
     name = 'string'
     def convert(self, value, param, ctx):
-        return set(char.encode() for char in super().convert(value, param, ctx))
+        return set(super().convert(value, param, ctx).encode())
 
 
 def setup_logger(
