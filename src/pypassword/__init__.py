@@ -1,3 +1,4 @@
+# Hello from MCP server
 from .password import create_password
 
 
